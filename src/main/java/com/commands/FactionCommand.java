@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class FactionCommand extends Command {
     public FactionCommand() {
         super("faction");
         setDescription("Main faction command.");
+        List<String> aliases = new ArrayList<>();
+        aliases.add("f");
+        setAliases(aliases);
     }
 
     @Override
@@ -111,21 +115,20 @@ public class FactionCommand extends Command {
                     }
                     case "enemy": {
                         player.sendMessage("§cComing soon...");
-                        /*
+
                         if (args.length < 2) {
                             player.sendMessage("§cUsage: /faction enemy <name>");
                         } else {
                             EnemyFaction.runSubCommand(player, args[1]);
                         }
 
-                         */
                         break;
                     }
                     case "promote": {
                         if (args.length < 2) {
                             player.sendMessage("§cUsage: /faction promote <name>");
                         } else {
-                            PromoteFaction.runSubCommand(player, Bukkit.getOfflinePlayer(args[1]));
+                            DemoteFaction.runSubCommand(player, Bukkit.getOfflinePlayer(args[1]));
                         }
                         break;
                     }
@@ -133,7 +136,7 @@ public class FactionCommand extends Command {
                         if (args.length < 2) {
                             player.sendMessage("§cUsage: /faction demote <name>");
                         } else {
-                            DemoteFaction.runSubCommand(player, Bukkit.getOfflinePlayer(args[1]));
+                            PromoteFaction.runSubCommand(player, Bukkit.getOfflinePlayer(args[1]));
                         }
                         break;
                     }

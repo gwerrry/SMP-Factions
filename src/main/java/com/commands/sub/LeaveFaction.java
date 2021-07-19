@@ -12,7 +12,7 @@ public class LeaveFaction {
             FactionMember member = SMPFactions.factionManager.getFactionMember(player);
             if (member.getRole() == FactionRole.LEADER) {
                 player.sendMessage("§cYou must use /faction disband if you truly want to delete this faction!");
-                player.sendMessage("§cYou can also transfer ownership by typing /f transfer <player> (The player must be online!)");
+                player.sendMessage("§cYou can also transfer ownership by typing /f promote <player> (The player must be online!)");
             } else {
                 SMPFactions.factionManager.removePlayer(member);
                 Faction faction = SMPFactions.factionManager.getPlayerFaction(player);

@@ -8,6 +8,7 @@ import com.players.FactionMember;
 import com.players.FactionRole;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -34,23 +35,26 @@ public class InvitePlayer {
                         fax.add(f);
                         FactionCommand.invites.put((Player) victim, fax);
                         sendClickableCommand((Player) victim, "§aYou have been invited to the the " + f.getName() + " faction. Click this message to accept. (Expires in 5 minutes)", "f join " + f.getName());
-                        new Thread(() -> {
+                        Bukkit.getScheduler().runTaskAsynchronously(SMPFactions.instance, () -> {
                             for (int i = 0; i <= 5; i++) {
                                 try {
                                     Thread.sleep(60000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
+                                if (!player.isOnline())
+                                    FactionCommand.invites.remove(player);
                                 if (!(FactionCommand.invites.get(player) == null))
                                     return;
                                 if (!FactionCommand.invites.get(player).contains(f))
                                     return;
                             }
+                            if (!player.isOnline())
+                                FactionCommand.invites.remove(player);
                             FactionCommand.invites.get(player).remove(f);
                             if (FactionCommand.invites.get(player).isEmpty())
                                 FactionCommand.invites.remove(player);
-                        }).start();
+                        });
                     }
 
                 } else {

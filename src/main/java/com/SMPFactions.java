@@ -4,7 +4,6 @@ import com.commands.FactionChatCommand;
 import com.commands.FactionCommand;
 import com.factions.FactionManager;
 import com.listeners.ChatListener;
-import com.listeners.PlayerHurtListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
@@ -24,7 +23,6 @@ public class SMPFactions extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerHurtListener(), this);
 
     }
 

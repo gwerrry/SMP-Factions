@@ -37,7 +37,7 @@ public class FactionChatCommand extends Command {
                     String message = stringBuilder.toString();
                     for (FactionMember factionMember : SMPFactions.factionManager.getPlayerFaction(player).getMembers()) {
                         if (factionMember.getPlayer().isOnline())
-                            factionMember.getPlayer().sendMessage("§b§l(FACTION CHAT) §d" + player.getName() + " → " + message);
+                            factionMember.getPlayer().sendMessage("§b§l(FACTION CHAT) §d" + player.getName() + " → §3" + message);
                     }
                 } else {
                     player.sendMessage("§cYou need to supply a message.");
